@@ -28,9 +28,95 @@
             background: linear-gradient(90deg, #2980b9, #00c6ff);
             transform: translateY(-2px) scale(1.04);
         }
+        .navbar {
+            width: 100%;
+            background: #2c3e50;
+            color: #fff;
+            padding: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-left: 32px;
+        }
+        .navbar .nav-buttons {
+            margin-right: 32px;
+        }
+        .navbar button {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 18px;
+            margin-left: 12px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .navbar button:hover {
+            background: #217dbb;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: #fff;
+            padding: 32px 24px;
+            border-radius: 10px;
+            min-width: 320px;
+            box-shadow: 0 4px 24px rgba(44,62,80,0.15);
+            position: relative;
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 18px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.3em;
+            color: #888;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 12px; }
+            .navbar .logo, .navbar .nav-buttons { margin: 0 8px; }
+            .modal-content { min-width: 90vw; }
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="logo">Benim Web Sitem</div>
+        <div class="nav-buttons">
+            <button onclick="openModal('login')">Giriş Yap</button>
+            <button onclick="openModal('register')">Kayıt Ol</button>
+        </div>
+    </div>
     <div class="container">
         <h1>Hoş Geldiniz!</h1>
         <p>Bu, HTML ile oluşturulmuş örnek bir web sitesidir.</p>
@@ -38,9 +124,43 @@
         <br>
         <button class="my-button" onclick="showMessage()">Bana Tıkla!</button>
     </div>
+    <!-- Giriş Modalı -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('login')">&times;</button>
+            <h2>Giriş Yap</h2>
+            <input type="text" placeholder="Kullanıcı Adı">
+            <input type="password" placeholder="Şifre">
+            <button style="width:100%;background:#3498db;">Giriş Yap</button>
+        </div>
+    </div>
+    <!-- Kayıt Modalı -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('register')">&times;</button>
+            <h2>Kayıt Ol</h2>
+            <input type="text" placeholder="Kullanıcı Adı">
+            <input type="email" placeholder="E-posta">
+            <input type="password" placeholder="Şifre">
+            <button style="width:100%;background:#27ae60;">Kayıt Ol</button>
+        </div>
+    </div>
     <script>
         function showMessage() {
             alert('Butona tıkladınız! Hoş geldiniz.');
+        }
+        function openModal(type) {
+            document.getElementById(type + 'Modal').classList.add('active');
+        }
+        function closeModal(type) {
+            document.getElementById(type + 'Modal').classList.remove('active');
+        }
+        // Modal dışında tıklayınca kapansın
+        window.onclick = function(event) {
+            ['loginModal','registerModal'].forEach(function(id){
+                var modal = document.getElementById(id);
+                if(event.target === modal) modal.classList.remove('active');
+            });
         }
     </script>
 </body>
