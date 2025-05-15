@@ -263,6 +263,54 @@
                 if(event.target === modal) modal.classList.remove('active');
             });
         }
+        // Üyelik Sistemi
+        // Kayıt
+        document.querySelector('#registerModal button[style*="#27ae60"]')?.addEventListener('click', function() {
+            var username = document.querySelector('#registerModal input[placeholder="Kullanıcı Adı"]').value;
+            var password = document.querySelector('#registerModal input[placeholder="Şifre"]').value;
+            if(username && password) {
+                localStorage.setItem('moto_user', username);
+                localStorage.setItem('moto_pass', password);
+                alert('Kayıt başarılı! Şimdi giriş yapabilirsiniz.');
+                closeModal('register');
+            } else {
+                alert('Lütfen tüm alanları doldurun.');
+            }
+        });
+        // Giriş
+        document.querySelector('#loginModal button[style*="#3498db"]')?.addEventListener('click', function() {
+            var username = document.querySelector('#loginModal input[placeholder="Kullanıcı Adı"]').value;
+            var password = document.querySelector('#loginModal input[placeholder="Şifre"]').value;
+            var regUser = localStorage.getItem('moto_user');
+            var regPass = localStorage.getItem('moto_pass');
+            if(username === regUser && password === regPass) {
+                localStorage.setItem('moto_loggedin', '1');
+                localStorage.setItem('moto_loggeduser', username);
+                alert('Giriş başarılı!');
+                closeModal('login');
+                updateNavbar();
+            } else {
+                alert('Kullanıcı adı veya şifre yanlış!');
+            }
+        });
+        // Navbar güncelleme ve çıkış
+        function updateNavbar() {
+            var loggedIn = localStorage.getItem('moto_loggedin') === '1';
+            var navBtns = document.querySelector('.nav-buttons');
+            if(loggedIn) {
+                var user = localStorage.getItem('moto_loggeduser');
+                navBtns.innerHTML = '<span>👤 ' + user + '</span> <button onclick="logoutUser()">Çıkış Yap</button>';
+            } else {
+                navBtns.innerHTML = '<button onclick="openModal(\'login\')">Giriş Yap</button> <button onclick="openModal(\'register\')">Kayıt Ol</button>';
+            }
+        }
+        function logoutUser() {
+            localStorage.removeItem('moto_loggedin');
+            localStorage.removeItem('moto_loggeduser');
+            updateNavbar();
+        }
+        // Sayfa yüklenince navbarı güncelle
+        window.onload = updateNavbar;
     </script>
 </body>
 </html>
