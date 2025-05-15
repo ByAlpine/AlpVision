@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdullah'ın Sitesi</title>
+    <title>AlpVision - Motor Severler</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
         .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
@@ -107,22 +107,123 @@
             .navbar .logo, .navbar .nav-buttons { margin: 0 8px; }
             .modal-content { min-width: 90vw; }
         }
+        .hero {
+            background: linear-gradient(120deg, #232526 0%, #414345 100%);
+            color: #fff;
+            padding: 48px 0 32px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.7em;
+            margin-bottom: 12px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            color: #e0e0e0;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+            margin: 40px 0 24px 0;
+        }
+        .gallery img {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.07);
+        }
+        .blog {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            padding: 24px;
+            margin: 32px 0;
+        }
+        .blog h2 { color: #2c3e50; }
+        .blog-post {
+            margin-bottom: 18px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+        }
+        .blog-post:last-child { border-bottom: none; }
+        .about, .contact {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            padding: 24px;
+            margin: 32px 0;
+        }
+        .footer {
+            background: #232526;
+            color: #fff;
+            text-align: center;
+            padding: 18px 0 10px 0;
+            margin-top: 40px;
+            font-size: 1em;
+        }
+        .footer a {
+            color: #6dd5fa;
+            margin: 0 8px;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <div class="logo">Abdullah'ın Sitesi</div>
+        <div class="logo">AlpVision - Motor Severler</div>
         <div class="nav-buttons">
             <button onclick="openModal('login')">Giriş Yap</button>
             <button onclick="openModal('register')">Kayıt Ol</button>
         </div>
     </div>
+    <div class="hero">
+        <h1>Motor Tutkunlarına Özel!</h1>
+        <p>En yeni motosiklet haberleri, turlar, ekipmanlar ve topluluk etkinlikleri burada. Hayalini kurduğun motor dünyasına hoş geldin!</p>
+    </div>
     <div class="container">
-        <h1>Hoş Geldiniz!</h1>
-        <p>Bu, HTML ile oluşturulmuş örnek bir web sitesidir.</p>
-        <a href="#">Daha fazlası için tıklayın</a>
-        <br>
-        <button class="my-button" onclick="showMessage()">Bana Tıkla!</button>
+        <h2>Galeri</h2>
+        <div class="gallery">
+            <img src="abdullah_proje/resimler/motor1.jpg" alt="Motosiklet 1">
+            <img src="abdullah_proje/resimler/motor2.jpg" alt="Motosiklet 2">
+            <img src="abdullah_proje/resimler/motor3.jpg" alt="Motosiklet 3">
+            <img src="abdullah_proje/resimler/motor4.jpg" alt="Motosiklet 4">
+        </div>
+        <div class="blog">
+            <h2>Son Haberler & Blog</h2>
+            <div class="blog-post">
+                <strong>Yeni Sezon Turları Başlıyor!</strong>
+                <p>Motor severler için 2025 sezonu turları başlıyor. Katılmak için <a href="#">buraya tıkla</a>.</p>
+            </div>
+            <div class="blog-post">
+                <strong>En İyi Kask ve Ekipman Önerileri</strong>
+                <p>Güvenli sürüş için en iyi ekipmanları senin için derledik. <a href="#">Detaylar</a></p>
+            </div>
+            <div class="blog-post">
+                <strong>Motor Severler Buluşması 2025</strong>
+                <p>Topluluğumuzun büyük buluşması için <a href="#">hemen kaydol</a>!</p>
+            </div>
+        </div>
+        <div class="about">
+            <h2>Hakkımızda</h2>
+            <p>AlpVision, motosiklet tutkunlarını bir araya getiren, bilgi paylaşımı ve topluluk ruhunu ön planda tutan bir platformdur. Amacımız, motor dünyasını daha eğlenceli ve güvenli hale getirmek.</p>
+        </div>
+        <div class="contact">
+            <h2>İletişim</h2>
+            <p>Bizimle iletişime geçmek için <a href="mailto:info@alpvision.com">info@alpvision.com</a> adresine mail atabilirsin.</p>
+        </div>
+    </div>
+    <div class="footer">
+        © 2025 AlpVision | <a href="#">Instagram</a> | <a href="#">YouTube</a> | <a href="#">İletişim</a>
     </div>
     <!-- Giriş Modalı -->
     <div class="modal" id="loginModal">
