@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benim İlk Web Sitem</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        h1 { color: #2c3e50; }
+        p { color: #555; }
+        a { color: #3498db; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .my-button {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(90deg, #3498db, #6dd5fa);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(52,152,219,0.08);
+        }
+        .my-button:hover {
+            background: linear-gradient(90deg, #2980b9, #00c6ff);
+            transform: translateY(-2px) scale(1.04);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hoş Geldiniz!</h1>
+        <p>Bu, HTML ile oluşturulmuş örnek bir web sitesidir.</p>
+        <a href="#">Daha fazlası için tıklayın</a>
+        <br>
+        <button class="my-button" onclick="showMessage()">Bana Tıkla!</button>
+    </div>
+    <script>
+        function showMessage() {
+            alert('Butona tıkladınız! Hoş geldiniz.');
+        }
+    </script>
+</body>
+</html>
