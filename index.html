@@ -3,317 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlpVision - Motor Severler</title>
+    <title>Yengeme Özel</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-        .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        h1 { color: #2c3e50; }
-        p { color: #555; }
-        a { color: #3498db; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .my-button {
-            display: inline-block;
-            padding: 12px 28px;
-            background: linear-gradient(90deg, #3498db, #6dd5fa);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            cursor: pointer;
-            margin-top: 24px;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 2px 8px rgba(52,152,219,0.08);
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f8cdda 0%, #1d2b64 100%);
+            color: #222;
         }
-        .my-button:hover {
-            background: linear-gradient(90deg, #2980b9, #00c6ff);
-            transform: translateY(-2px) scale(1.04);
-        }
-        .navbar {
-            width: 100%;
-            background: #2c3e50;
-            color: #fff;
-            padding: 16px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        .navbar .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-left: 32px;
-        }
-        .navbar .nav-buttons {
-            margin-right: 32px;
-        }
-        .navbar button {
-            background: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 18px;
-            margin-left: 12px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .navbar button:hover {
-            background: #217dbb;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0; top: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal.active { display: flex; }
-        .modal-content {
-            background: #fff;
-            padding: 32px 24px;
-            border-radius: 10px;
-            min-width: 320px;
-            box-shadow: 0 4px 24px rgba(44,62,80,0.15);
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.97);
+            padding: 40px 28px 32px 28px;
+            border-radius: 22px;
+            box-shadow: 0 6px 32px rgba(232,67,147,0.13);
+            text-align: center;
             position: relative;
         }
-        .modal-content h2 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        .modal-content input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0 18px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1em;
-        }
-        .close-btn {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            background: none;
-            border: none;
-            font-size: 1.3em;
-            color: #888;
-            cursor: pointer;
-        }
-        @media (max-width: 600px) {
-            .container { padding: 12px; }
-            .navbar .logo, .navbar .nav-buttons { margin: 0 8px; }
-            .modal-content { min-width: 90vw; }
-        }
-        .hero {
-            background: linear-gradient(120deg, #232526 0%, #414345 100%);
-            color: #fff;
-            padding: 48px 0 32px 0;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 2.7em;
-            margin-bottom: 12px;
-        }
-        .hero p {
-            font-size: 1.3em;
-            color: #e0e0e0;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            justify-content: center;
-            margin: 40px 0 24px 0;
-        }
-        .gallery img {
-            width: 180px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
-            transition: transform 0.2s;
-        }
-        .gallery img:hover {
-            transform: scale(1.07);
-        }
-        .blog {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
-            padding: 24px;
-            margin: 32px 0;
-        }
-        .blog h2 { color: #2c3e50; }
-        .blog-post {
+        .heart {
+            font-size: 3em;
+            color: #e84393;
             margin-bottom: 18px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 12px;
+            animation: pulse 1.2s infinite;
         }
-        .blog-post:last-child { border-bottom: none; }
-        .about, .contact {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
-            padding: 24px;
-            margin: 32px 0;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+            100% { transform: scale(1); }
+        }
+        h1 {
+            color: #e84393;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .note {
+            font-size: 1.25em;
+            color: #444;
+            margin: 28px 0 36px 0;
+            background: #f8cdda;
+            border-radius: 12px;
+            padding: 18px 12px;
+            box-shadow: 0 2px 8px rgba(232,67,147,0.07);
+        }
+        .poem {
+            background: linear-gradient(90deg, #f8cdda 0%, #fffde4 100%);
+            color: #1d2b64;
+            border-radius: 14px;
+            padding: 22px 18px;
+            margin: 36px 0 28px 0;
+            font-style: italic;
+            font-size: 1.18em;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.08);
+        }
+        .music {
+            margin: 30px 0 18px 0;
+        }
+        .music label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e84393;
+            font-weight: bold;
+            font-size: 1.1em;
         }
         .footer {
-            background: #232526;
             color: #fff;
             text-align: center;
-            padding: 18px 0 10px 0;
-            margin-top: 40px;
-            font-size: 1em;
+            margin-top: 48px;
+            padding: 22px 0 14px 0;
+            font-size: 1.15em;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #1d2b64 0%, #f8cdda 100%);
         }
-        .footer a {
-            color: #6dd5fa;
-            margin: 0 8px;
-            text-decoration: none;
+        .flowers {
+            position: absolute;
+            left: -40px;
+            top: -40px;
+            width: 120px;
+            opacity: 0.18;
+            z-index: 0;
         }
-        .footer a:hover {
-            text-decoration: underline;
+        .flowers2 {
+            position: absolute;
+            right: -40px;
+            bottom: -40px;
+            width: 120px;
+            opacity: 0.18;
+            z-index: 0;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 12px; }
+            .flowers, .flowers2 { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo">AlpVision - Motor Severler</div>
-        <div class="nav-buttons">
-            <button onclick="openModal('login')">Giriş Yap</button>
-            <button onclick="openModal('register')">Kayıt Ol</button>
-        </div>
-    </div>
-    <div class="hero">
-        <h1>Motor Tutkunlarına Özel!</h1>
-        <p>En yeni motosiklet haberleri, turlar, ekipmanlar ve topluluk etkinlikleri burada. Hayalini kurduğun motor dünyasına hoş geldin!</p>
-    </div>
     <div class="container">
-        <h2>Galeri</h2>
-        <div class="gallery">
-            <img src="abdullah_proje/resimler/motor1.jpg" alt="Motosiklet 1">
-            <img src="abdullah_proje/resimler/motor2.jpg" alt="Motosiklet 2">
-            <img src="abdullah_proje/resimler/motor3.jpg" alt="Motosiklet 3">
-            <img src="abdullah_proje/resimler/motor4.jpg" alt="Motosiklet 4">
+        <img src="https://pngimg.com/d/flowers_PNG102.png" class="flowers" alt="Çiçekler">
+        <img src="https://pngimg.com/d/flowers_PNG102.png" class="flowers2" alt="Çiçekler">
+        <div class="heart">❤️</div>
+        <h1>Yengeme Kalpten Sevgiler</h1>
+        <div class="note">
+            Senin gülüşünle aydınlanan bir aileye sahip olduğum için çok şanslıyım.<br>
+            Varlığın, iyiliğin ve sevginle hayatımıza güzellik kattın.<br>
+            Her zaman yanında, her zaman destekçin olacağım. İyi ki varsın, iyi ki yengemsin!
         </div>
-        <div class="blog">
-            <h2>Son Haberler & Blog</h2>
-            <div class="blog-post">
-                <strong>Yeni Sezon Turları Başlıyor!</strong>
-                <p>Motor severler için 2025 sezonu turları başlıyor. Katılmak için <a href="#">buraya tıkla</a>.</p>
-            </div>
-            <div class="blog-post">
-                <strong>En İyi Kask ve Ekipman Önerileri</strong>
-                <p>Güvenli sürüş için en iyi ekipmanları senin için derledik. <a href="#">Detaylar</a></p>
-            </div>
-            <div class="blog-post">
-                <strong>Motor Severler Buluşması 2025</strong>
-                <p>Topluluğumuzun büyük buluşması için <a href="#">hemen kaydol</a>!</p>
-            </div>
+        <div class="poem">
+            "Senin gülen gözlerinde huzur buldum,<br>
+            Her bakışında sevgiyi, umudu, iyiliği gördüm.<br>
+            Yenge, sen ailemize neşe ve güzellik getirdin,<br>
+            Varlığınla hayatımızı daha anlamlı kıldın.<br><br>
+            Her zaman yanında, her zaman destekçin olacağım.<br>
+            Senin mutluluğun, bizim mutluluğumuz.<br>
+            İyi ki varsın, iyi ki yengemsin."
         </div>
-        <div class="about">
-            <h2>Hakkımızda</h2>
-            <p>AlpVision, motosiklet tutkunlarını bir araya getiren, bilgi paylaşımı ve topluluk ruhunu ön planda tutan bir platformdur. Amacımız, motor dünyasını daha eğlenceli ve güvenli hale getirmek.</p>
-        </div>
-        <div class="contact">
-            <h2>İletişim</h2>
-            <p>Bizimle iletişime geçmek için <a href="mailto:info@alpvision.com">info@alpvision.com</a> adresine mail atabilirsin.</p>
+        <div class="music">
+            <label>Senin için bir şarkı:</label>
+            <audio controls>
+                <source src="Lost.mp3" type="audio/mpeg">
+                Tarayıcınız bu müzik formatını desteklemiyor.
+            </audio>
         </div>
     </div>
     <div class="footer">
-        © 2025 AlpVision |
-        <a href="https://www.instagram.com/alpine.mtrr/?__pwa=1#" target="_blank">Instagram</a> |
-        <a href="#">YouTube</a> |
-        <a href="#">İletişim</a>
+        Senin için her zaman en iyisini isterim. <br>Sevgiyle, Abdullah 💖
     </div>
-    <!-- Giriş Modalı -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('login')">&times;</button>
-            <h2>Giriş Yap</h2>
-            <input type="text" placeholder="Kullanıcı Adı">
-            <input type="password" placeholder="Şifre">
-            <button style="width:100%;background:#3498db;">Giriş Yap</button>
-        </div>
-    </div>
-    <!-- Kayıt Modalı -->
-    <div class="modal" id="registerModal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('register')">&times;</button>
-            <h2>Kayıt Ol</h2>
-            <input type="text" placeholder="Kullanıcı Adı">
-            <input type="email" placeholder="E-posta">
-            <input type="password" placeholder="Şifre">
-            <button style="width:100%;background:#27ae60;">Kayıt Ol</button>
-        </div>
-    </div>
-    <script>
-        function showMessage() {
-            alert('Butona tıkladınız! Hoş geldiniz.');
-        }
-        function openModal(type) {
-            document.getElementById(type + 'Modal').classList.add('active');
-        }
-        function closeModal(type) {
-            document.getElementById(type + 'Modal').classList.remove('active');
-        }
-        // Modal dışında tıklayınca kapansın
-        window.onclick = function(event) {
-            ['loginModal','registerModal'].forEach(function(id){
-                var modal = document.getElementById(id);
-                if(event.target === modal) modal.classList.remove('active');
-            });
-        }
-        // Üyelik Sistemi
-        // Kayıt
-        document.querySelector('#registerModal button[style*="#27ae60"]')?.addEventListener('click', function() {
-            var username = document.querySelector('#registerModal input[placeholder="Kullanıcı Adı"]').value;
-            var password = document.querySelector('#registerModal input[placeholder="Şifre"]').value;
-            if(username && password) {
-                localStorage.setItem('moto_user', username);
-                localStorage.setItem('moto_pass', password);
-                alert('Kayıt başarılı! Şimdi giriş yapabilirsiniz.');
-                closeModal('register');
-            } else {
-                alert('Lütfen tüm alanları doldurun.');
-            }
-        });
-        // Giriş
-        document.querySelector('#loginModal button[style*="#3498db"]')?.addEventListener('click', function() {
-            var username = document.querySelector('#loginModal input[placeholder="Kullanıcı Adı"]').value;
-            var password = document.querySelector('#loginModal input[placeholder="Şifre"]').value;
-            var regUser = localStorage.getItem('moto_user');
-            var regPass = localStorage.getItem('moto_pass');
-            if(username === regUser && password === regPass) {
-                localStorage.setItem('moto_loggedin', '1');
-                localStorage.setItem('moto_loggeduser', username);
-                alert('Giriş başarılı!');
-                closeModal('login');
-                updateNavbar();
-            } else {
-                alert('Kullanıcı adı veya şifre yanlış!');
-            }
-        });
-        // Navbar güncelleme ve çıkış
-        function updateNavbar() {
-            var loggedIn = localStorage.getItem('moto_loggedin') === '1';
-            var navBtns = document.querySelector('.nav-buttons');
-            if(loggedIn) {
-                var user = localStorage.getItem('moto_loggeduser');
-                navBtns.innerHTML = '<span>👤 ' + user + '</span> <button onclick="logoutUser()">Çıkış Yap</button>';
-            } else {
-                navBtns.innerHTML = '<button onclick="openModal(\'login\')">Giriş Yap</button> <button onclick="openModal(\'register\')">Kayıt Ol</button>';
-            }
-        }
-        function logoutUser() {
-            localStorage.removeItem('moto_loggedin');
-            localStorage.removeItem('moto_loggeduser');
-            updateNavbar();
-        }
-        // Sayfa yüklenince navbarı güncelle
-        window.onload = updateNavbar;
-    </script>
 </body>
 </html>
